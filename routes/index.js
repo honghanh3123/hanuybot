@@ -16,6 +16,15 @@ router.get('/webhook', function (req, res) {
 router.post("/webhook", (req, res)=>{
   let data = req.body;
   console.log(data);
+  let entries = data.entry;
+  entries.map(entry => {
+    let messages = entry.messaging;
+    messages.map(message =>{
+      let sender = message.sender.id;
+      let mess = message.message.text;
+      console.log(sender, mess)
+    }) 
+  })
   res.status(200).send('ok')
 })
 
